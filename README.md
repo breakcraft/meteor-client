@@ -12,4 +12,12 @@ A modern Old School Runescape client
 - Uses many ideas / functionality from https://github.com/runelite/runelite
 
 
-
+# Run Alter:
+1) Clone the project
+2) Open README.MD
+3) `Run Meteor` Click on Run Meteor with Green Arrow pointing to right side.
+4) When the client fully loads find Private Server plugin
+5) In codebase write: 127.0.0.1
+6) In Modulus field paste your Modulus Key which can be found at root server folder:
+![serve](https://raw.githubusercontent.com/AlterRSPS/Resources/main/docs/resources/ReadMe_Alter/Modulus_at_server_root.png)
+7) You should enable the plugin now and re-open the client.
