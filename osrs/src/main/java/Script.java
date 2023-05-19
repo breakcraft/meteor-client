@@ -3,99 +3,69 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cv")
+@ObfuscatedName("ch")
 @Implements("Script")
 public class Script extends DualNode {
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "Lkt;"
-   )
-   @Export("Script_cached")
-   static EvictingDualNodeHashTable Script_cached = new EvictingDualNodeHashTable(128);
-   @ObfuscatedName("as")
-   @ObfuscatedSignature(
-      descriptor = "Lbw;"
-   )
-   @Export("pcmPlayerProvider")
-   public static class50 pcmPlayerProvider;
-   @ObfuscatedName("oe")
-   @ObfuscatedSignature(
-      descriptor = "Lmy;"
-   )
-   static Widget field803;
-   @ObfuscatedName("al")
-   String field793;
-   @ObfuscatedName("ac")
-   @Export("opcodes")
-   int[] opcodes;
-   @ObfuscatedName("ab")
-   @Export("intOperands")
-   int[] intOperands;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable Script_cached = new EvictingDualNodeHashTable(128);
+    @ObfuscatedName("ai")
+    @ObfuscatedSignature(
+            descriptor = "Lno;"
+    )
+    public static NetFileRequest NetCache_currentResponse;
    @ObfuscatedName("an")
-   @Export("stringOperands")
-   String[] stringOperands;
-   @ObfuscatedName("ao")
-   @Export("localIntCount")
-   int localIntCount;
-   @ObfuscatedName("av")
-   @Export("localStringCount")
-   int localStringCount;
-   @ObfuscatedName("aq")
-   @Export("intArgumentCount")
-   int intArgumentCount;
-   @ObfuscatedName("ap")
-   @Export("stringArgumentCount")
-   int stringArgumentCount;
-   @ObfuscatedName("ar")
-   @ObfuscatedSignature(
-      descriptor = "[Lrz;"
-   )
-   @Export("switches")
-   IterableNodeHashTable[] switches;
+   String field794;
+    @ObfuscatedName("aw")
+    int[] opcodes;
+    @ObfuscatedName("ac")
+    int[] intOperands;
+    @ObfuscatedName("au")
+    String[] stringOperands;
+    @ObfuscatedName("ab")
+    int localIntCount;
+    @ObfuscatedName("aq")
+    int localStringCount;
+    @ObfuscatedName("al")
+    int intArgumentCount;
+    @ObfuscatedName("at")
+    int stringArgumentCount;
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "[Lro;"
+    )
+    IterableNodeHashTable[] switches;
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)[Lrz;",
-      garbageValue = "-2130489863"
-   )
-   @Export("newIterableNodeHashTable")
-   IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(II)[Lro;",
+            garbageValue = "-1544314186"
+    )
+    IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
       return new IterableNodeHashTable[var1];
    }
 
-   @ObfuscatedName("kp")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "([Lmy;IIIZI)V",
-      garbageValue = "-1823735571"
+      descriptor = "(III)I",
+      garbageValue = "-2065195027"
    )
-   @Export("resizeInterface")
-   static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
-      for(int var5 = 0; var5 < var0.length; ++var5) {
-         Widget var6 = var0[var5];
-         if (var6 != null && var6.parentId == var1) {
-            PcmPlayer.alignWidgetSize(var6, var2, var3, var4);
-            Tiles.alignWidgetPosition(var6, var2, var3);
-            if (var6.scrollX > var6.scrollWidth - var6.width) {
-               var6.scrollX = var6.scrollWidth - var6.width;
-            }
-
-            if (var6.scrollX < 0) {
-               var6.scrollX = 0;
-            }
-
-            if (var6.scrollY > var6.scrollHeight - var6.height) {
-               var6.scrollY = var6.scrollHeight - var6.height;
-            }
-
-            if (var6.scrollY < 0) {
-               var6.scrollY = 0;
-            }
-
-            if (var6.type == 0) {
-               class278.revalidateWidgetScroll(var0, var6, var4);
-            }
+   public static int method460(int var0, int var1) {
+      int var2;
+      for(var2 = 1; var1 > 1; var1 >>= 1) {
+         if ((var1 & 1) != 0) {
+            var2 = var0 * var2;
          }
+
+         var0 *= var0;
       }
 
+      if (var1 == 1) {
+         return var0 * var2;
+      } else {
+         return var2;
+      }
    }
 }

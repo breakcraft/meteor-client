@@ -3,24 +3,21 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bt")
+@ObfuscatedName("bs")
 @Implements("SoundEffect")
 public class SoundEffect {
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "[Lcn;"
-   )
-   @Export("instruments")
-   Instrument[] instruments = new Instrument[10];
-   @ObfuscatedName("ac")
-   @Export("start")
-   int start;
-   @ObfuscatedName("ab")
-   @Export("end")
-   int end;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "[Lca;"
+    )
+    Instrument[] instruments = new Instrument[10];
+    @ObfuscatedName("aw")
+    int start;
+    @ObfuscatedName("ac")
+    int end;
 
    @ObfuscatedSignature(
-      descriptor = "(Lsy;)V"
+      descriptor = "(Lsg;)V"
    )
    SoundEffect(Buffer var1) {
       for(int var2 = 0; var2 < 10; ++var2) {
@@ -36,19 +33,17 @@ public class SoundEffect {
       this.end = var1.readUnsignedShort();
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "()Lbe;"
-   )
-   @Export("toRawSound")
-   public RawSound toRawSound() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "()Lbr;"
+    )
+    public RawSound toRawSound() {
       byte[] var1 = this.mix();
       return new RawSound(22050, var1, this.start * 22050 / 1000, this.end * 22050 / 1000);
    }
 
-   @ObfuscatedName("ac")
-   @Export("calculateDelay")
-   public final int calculateDelay() {
+    @ObfuscatedName("aw")
+    public final int calculateDelay() {
       int var1 = 9999999;
 
       int var2;
@@ -80,9 +75,8 @@ public class SoundEffect {
       }
    }
 
-   @ObfuscatedName("ab")
-   @Export("mix")
-   final byte[] mix() {
+    @ObfuscatedName("ac")
+    final byte[] mix() {
       int var1 = 0;
 
       int var2;
@@ -119,12 +113,11 @@ public class SoundEffect {
       }
    }
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(Lne;II)Lbt;"
-   )
-   @Export("readSoundEffect")
-   public static SoundEffect readSoundEffect(AbstractArchive var0, int var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lnm;II)Lbs;"
+    )
+    public static SoundEffect readSoundEffect(AbstractArchive var0, int var1, int var2) {
       byte[] var3 = var0.takeFile(var1, var2);
       return var3 == null ? null : new SoundEffect(new Buffer(var3));
    }

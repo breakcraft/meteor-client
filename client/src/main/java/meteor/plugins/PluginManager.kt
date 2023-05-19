@@ -5,12 +5,14 @@ import net.runelite.client.plugins.questhelper.QuestHelperPlugin
 import net.runelite.client.plugins.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
+import meteor.Main.logger
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
 import meteor.external.ExternalManager
 import meteor.plugins.crabfighter.CrabFighterPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
+import meteor.plugins.autokraken.AutoKrakenPlugin
 import meteor.plugins.ammo.AmmoPlugin
 import meteor.plugins.antidrag.AntiDragPlugin
 import meteor.plugins.attackstyles.AttackStylesPlugin
@@ -140,6 +142,7 @@ import net.runelite.client.plugins.kourendlibrary.KourendLibraryPlugin
 import net.runelite.client.plugins.npcstatus.NpcAttackTimersPlugin
 import net.runelite.client.plugins.raids.RaidsPlugin
 import net.runelite.client.plugins.titheextended.TithePlugin
+import meteor.plugins.disablerenderer.DisableRenderingPlugin
 import rs117.hd.HdPlugin
 import java.io.File
 import java.net.JarURLConnection
@@ -154,12 +157,13 @@ object PluginManager {
     var plugins = mutableStateListOf<Plugin>()
     val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
     val runningMap = HashMap<Plugin, Boolean>()
-
+    val classLoaders = HashMap<String, URLClassLoader>();
     init {
         init<Meteor>()
         if (pluginsEnabled) {
             init<AgilityPlugin>()
             init<AlchemicalHydraPlugin>()
+            init<AutoKrakenPlugin>()
             init<AmmoPlugin>()
             init<AoeWarningPlugin>()
             init<AttackStylesPlugin>()
@@ -201,6 +205,7 @@ object PluginManager {
             init<DefaultWorldPlugin>()
             init<DemonicGorillaPlugin>()
             init<DevToolsPlugin>()
+            init<DisableRenderingPlugin>()
             init<DriftNetPlugin>()
             init<ExamplePlugin>()
             init<EmojiPlugin>()
@@ -213,7 +218,7 @@ object PluginManager {
             init<FpsPlugin>()
             init<FullscreenPlugin>()
             init<GauntletExtendedPlugin>()
-            init<HdPlugin>()
+            //init<HdPlugin>()
             init<GpuPlugin>()
             init<GroundItemsPlugin>()
             init<GroundMarkerPlugin>()
@@ -329,6 +334,18 @@ object PluginManager {
                     manifest?.let { manifest ->
                         if (manifest.mainAttributes.getValue("Main-Class") == plugin.javaClass.name) {
                             stop(plugin)
+
+                            try
+                            {
+                                var cl = classLoaders.remove(plugin.getName());
+                                cl?.close();
+
+                            }catch (e: Exception)
+                            {
+                                logger.error("Failed to close class loader for " + plugin.getName())
+                                e.printStackTrace();
+                            }
+
                             plugins.remove(plugin)
                             initExternalPlugin(it, manifest)
                             return
@@ -372,9 +389,9 @@ object PluginManager {
 
     private fun initExternalPlugin(jar: File, manifest: Manifest) {
         try {
-            URLClassLoader(arrayOf(jar.toURI().toURL())).use { classLoader ->
-                val plugin =
-                    classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor()
+            var cl = URLClassLoader(arrayOf(jar.toURI().toURL()));
+            val plugin =
+                    cl.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor()
                         .newInstance() as Plugin
                 if (plugins.any { p -> p.getName().equals(plugin.getName()) })
                     throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
@@ -387,10 +404,11 @@ object PluginManager {
                     ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
 
                 plugins.add(plugin)
+                classLoaders[plugin.getName()] = cl;
                 runningMap[plugin] = plugin.shouldEnable()
                 if (runningMap[plugin]!!)
                     start(plugin)
-            }
+
         } catch (e: Exception) {
             e.printStackTrace()
             if (e is java.lang.RuntimeException) {
@@ -409,6 +427,10 @@ object PluginManager {
 
     inline fun <reified T : Plugin> get(): T {
         return plugins.filterIsInstance<T>().first()
+    }
+
+    inline fun <reified T : Plugin> getOrNull(): T? {
+        return plugins.filterIsInstance<T>().firstOrNull()
     }
 
     inline fun <reified T : Plugin> restart() {
@@ -439,9 +461,17 @@ object PluginManager {
     }
 
     fun start(plugin: Plugin) {
-        plugin.start()
-        plugin.onStart()
-        runningMap[plugin] = true
+        try
+        {
+            plugin.start()
+            plugin.onStart()
+            runningMap[plugin] = true
+        }catch (e:Throwable)
+        {
+            runningMap[plugin] = false
+            logger.error("FAILED TO START PLUGIN")
+            e.printStackTrace()
+        }
     }
 
     fun shutdown() {

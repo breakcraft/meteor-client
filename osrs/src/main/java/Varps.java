@@ -2,21 +2,15 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("li")
+@ObfuscatedName("le")
 @Implements("Varps")
 public class Varps {
-   @ObfuscatedName("aj")
-   @Export("Varps_masks")
-   static int[] Varps_masks = new int[32];
-   @ObfuscatedName("al")
-   @Export("Varps_temp")
-   public static int[] Varps_temp;
-   @ObfuscatedName("ac")
-   @Export("Varps_main")
-   public static int[] Varps_main;
-   @ObfuscatedName("bd")
-   @Export("hasFocus")
-   protected static boolean hasFocus;
+    @ObfuscatedName("af")
+    static int[] Varps_masks = new int[32];
+    @ObfuscatedName("an")
+    public static int[] Varps_temp;
+    @ObfuscatedName("aw")
+    public static int[] Varps_main;
 
    static {
       int var0 = 2;

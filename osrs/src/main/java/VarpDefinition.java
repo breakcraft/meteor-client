@@ -3,38 +3,32 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hc")
+@ObfuscatedName("gz")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "Lne;"
-   )
-   @Export("VarpDefinition_archive")
-   static AbstractArchive VarpDefinition_archive;
-   @ObfuscatedName("al")
-   public static int field1461;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lkt;"
-   )
-   @Export("VarpDefinition_cached")
-   public static EvictingDualNodeHashTable VarpDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("as")
-   public static boolean field1462;
-   @ObfuscatedName("az")
-   static int field1465;
-   @ObfuscatedName("ab")
-   @Export("type")
-   public int type = 0;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive VarpDefinition_archive;
+   @ObfuscatedName("an")
+   public static int field1475;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    public static EvictingDualNodeHashTable VarpDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("al")
+    public static int musicTrackFileId;
+    @ObfuscatedName("ac")
+    public int type = 0;
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsy;I)V",
-      garbageValue = "-1839808014"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "955579844"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -45,16 +39,42 @@ public class VarpDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(Lsy;IS)V",
-      garbageValue = "-22092"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "1359565158"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 5) {
          this.type = var1.readUnsignedShort();
       }
 
+   }
+
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(IIII)Ltq;",
+      garbageValue = "2091722822"
+   )
+   static SpritePixels method982(int var0, int var1, int var2) {
+      return (SpritePixels)WorldMapRegion.WorldMapRegion_cachedSprites.get(BuddyRankComparator.method710(var0, var1, var2));
+   }
+
+   @ObfuscatedName("au")
+   @ObfuscatedSignature(
+      descriptor = "(I)[Ley;",
+      garbageValue = "335062925"
+   )
+   static class126[] method983() {
+      return new class126[]{class126.field1243, class126.field1240, class126.field1241, class126.field1246, class126.field1247, class126.field1244};
+   }
+
+   @ObfuscatedName("ag")
+   @ObfuscatedSignature(
+      descriptor = "(IIII)V",
+      garbageValue = "-1740756415"
+   )
+   public static void method981(int var0, int var1, int var2) {
+      Rasterizer3D.clips.method1360(var0, var1, var2);
    }
 }

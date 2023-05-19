@@ -1,67 +1,96 @@
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("en")
+@ObfuscatedName("ds")
 @Implements("Players")
 public class Players {
-   @ObfuscatedName("ac")
-   @Export("activityFlags")
-   static byte[] activityFlags = new byte[2048];
-   @ObfuscatedName("ab")
+   @ObfuscatedName("un")
+   static int field1095;
+    @ObfuscatedName("aw")
+    static byte[] activityFlags = new byte[2048];
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "[Liu;"
+    )
+    static MoveSpeed[] playerMovementSpeeds = new MoveSpeed[2048];
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "[Lsg;"
+    )
+    static Buffer[] cachedAppearanceBuffer = new Buffer[2048];
+    @ObfuscatedName("ab")
+    static int Players_count = 0;
+    @ObfuscatedName("aq")
+    static int[] Players_indices = new int[2048];
+    @ObfuscatedName("al")
+    static int Players_emptyIdxCount = 0;
+    @ObfuscatedName("at")
+    static int[] Players_emptyIndices = new int[2048];
+    @ObfuscatedName("aa")
+    static int[] Players_regions = new int[2048];
+    @ObfuscatedName("ay")
+    static int[] Players_orientations = new int[2048];
+    @ObfuscatedName("ao")
+    static int[] Players_targetIndices = new int[2048];
+    @ObfuscatedName("ax")
+    static int Players_pendingUpdateCount = 0;
+    @ObfuscatedName("ai")
+    static int[] Players_pendingUpdateIndices = new int[2048];
+   @ObfuscatedName("ag")
    @ObfuscatedSignature(
-      descriptor = "[Lis;"
+      descriptor = "Lsg;"
    )
-   @Export("playerMovementSpeeds")
-   static MoveSpeed[] playerMovementSpeeds = new MoveSpeed[2048];
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "[Lsy;"
-   )
-   @Export("cachedAppearanceBuffer")
-   static Buffer[] cachedAppearanceBuffer = new Buffer[2048];
-   @ObfuscatedName("ao")
-   @Export("Players_count")
-   static int Players_count = 0;
-   @ObfuscatedName("av")
-   @Export("Players_indices")
-   static int[] Players_indices = new int[2048];
-   @ObfuscatedName("aq")
-   @Export("Players_emptyIdxCount")
-   static int Players_emptyIdxCount = 0;
-   @ObfuscatedName("ap")
-   @Export("Players_emptyIndices")
-   static int[] Players_emptyIndices = new int[2048];
-   @ObfuscatedName("ar")
-   @Export("Players_regions")
-   static int[] Players_regions = new int[2048];
-   @ObfuscatedName("ak")
-   @Export("Players_orientations")
-   static int[] Players_orientations = new int[2048];
-   @ObfuscatedName("ax")
-   @Export("Players_targetIndices")
-   static int[] Players_targetIndices = new int[2048];
-   @ObfuscatedName("as")
-   @Export("Players_pendingUpdateCount")
-   static int Players_pendingUpdateCount = 0;
-   @ObfuscatedName("ay")
-   @Export("Players_pendingUpdateIndices")
-   static int[] Players_pendingUpdateIndices = new int[2048];
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "Lsy;"
-   )
-   static Buffer field1079 = new Buffer(new byte[5000]);
+   static Buffer field1094 = new Buffer(new byte[5000]);
+    @ObfuscatedName("kd")
+    @ObfuscatedSignature(
+            descriptor = "[Ltq;"
+    )
+    static SpritePixels[] mapMarkerSprites;
+    @ObfuscatedName("rx")
+    @ObfuscatedSignature(
+            descriptor = "Lqt;"
+    )
+    static class429 varclan;
 
-   @ObfuscatedName("gy")
-   @ObfuscatedSignature(
-      descriptor = "(Lmx;Ljava/lang/String;I)V",
-      garbageValue = "1745805921"
-   )
-   static void method603(Archive var0, String var1) {
-      ArchiveLoader var2 = new ArchiveLoader(var0, var1);
-      Client.archiveLoaders.add(var2);
-      Client.field587 += var2.groupCount;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-1943998514"
+    )
+    static boolean loadWorlds() {
+      try {
+         if (class11.World_request == null) {
+            class11.World_request = class14.urlRequester.request(new URL(GrandExchangeOffer.field3530));
+         } else if (class11.World_request.isDone()) {
+            byte[] var0 = class11.World_request.getResponse();
+            Buffer var1 = new Buffer(var0);
+            var1.readInt();
+            World.World_count = var1.readUnsignedShort();
+            class31.World_worlds = new World[World.World_count];
+
+            World var3;
+            for(int var2 = 0; var2 < World.World_count; var3.index = var2++) {
+               var3 = class31.World_worlds[var2] = new World();
+               var3.id = var1.readUnsignedShort();
+               var3.properties = var1.readInt();
+               var3.host = var1.readStringCp1252NullTerminated();
+               var3.activity = var1.readStringCp1252NullTerminated();
+               var3.location = var1.readUnsignedByte();
+               var3.population = var1.readShort();
+            }
+
+            class123.sortWorlds(class31.World_worlds, 0, class31.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
+            class11.World_request = null;
+            return true;
+         }
+      } catch (Exception var4) {
+         var4.printStackTrace();
+         class11.World_request = null;
+      }
+
+      return false;
    }
 }

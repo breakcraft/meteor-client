@@ -372,6 +372,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	int getScale();
 
+	@Import("viewportZoom")
+	void setScale(int scale);
+
 	@Import("canvasHeight")
 	@Override
 	int getCanvasHeight();
@@ -738,36 +741,33 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("Scene_cameraYawCosine")
 	void setYawCos(int v);
 
-	@Import("Rasterizer3D_zoom")
+	@Import("get3dZoom")
 	@Override
-	int get3dZoom();
+	int get3dZoom$api();
 
-	@Import("Rasterizer3D_zoom")
 	void set3dZoom(int zoom);
 
-	@Import("Rasterizer3D_clipMidX2")
+	@Import("getClipMidX2")
 	@Override
-	int getRasterizer3D_clipMidX2();
+	int getClipMidX2$api();
 
-	@Import("Rasterizer3D_clipNegativeMidX")
 	@Override
 	int getRasterizer3D_clipNegativeMidX();
 
-	@Import("Rasterizer3D_clipNegativeMidY")
 	@Override
 	int getRasterizer3D_clipNegativeMidY();
 
-	@Import("Rasterizer3D_clipMidY2")
+	@Import("getClipMidY2")
 	@Override
-	int getRasterizer3D_clipMidY2();
+	int getClipMidY2$api();
 
-	@Import("Rasterizer3D_clipMidX")
+	@Import("getClipMidX")
 	@Override
-	int getCenterX();
+	int getCenterX$api();
 
-	@Import("Rasterizer3D_clipMidY")
+	@Import("getClipMidY")
 	@Override
-	int getCenterY();
+	int getCenterY$api();
 
 	@Import("getWorldMap")
 	RSWorldMap getRenderOverview();

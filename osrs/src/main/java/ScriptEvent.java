@@ -3,121 +3,89 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dx")
+@ObfuscatedName("dr")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-   @ObfuscatedName("aj")
-   @Export("args")
-   Object[] args;
-   @ObfuscatedName("al")
-   boolean field848;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lmy;"
-   )
-   @Export("widget")
-   Widget widget;
-   @ObfuscatedName("ab")
-   @Export("mouseX")
-   int mouseX;
+   @ObfuscatedName("uw")
+   static int field851;
+    @ObfuscatedName("be")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive Widget_spritesArchive;
+    @ObfuscatedName("af")
+    Object[] args;
    @ObfuscatedName("an")
-   @Export("mouseY")
-   int mouseY;
-   @ObfuscatedName("ao")
-   @Export("opIndex")
-   int opIndex;
-   @ObfuscatedName("av")
-   @ObfuscatedSignature(
-      descriptor = "Lmy;"
-   )
-   @Export("dragTarget")
-   Widget dragTarget;
-   @ObfuscatedName("aq")
-   @Export("keyTyped")
-   int keyTyped;
-   @ObfuscatedName("ap")
-   @Export("keyPressed")
-   int keyPressed;
-   @ObfuscatedName("ar")
-   @Export("targetName")
-   String targetName;
-   @ObfuscatedName("ak")
-   int field853;
-   @ObfuscatedName("ax")
-   @Export("type")
-   int type = 76;
+   boolean field849;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lmq;"
+    )
+    Widget widget;
+    @ObfuscatedName("ac")
+    int mouseX;
+    @ObfuscatedName("au")
+    int mouseY;
+    @ObfuscatedName("ab")
+    int opIndex;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Lmq;"
+    )
+    Widget dragTarget;
+    @ObfuscatedName("al")
+    int keyTyped;
+    @ObfuscatedName("at")
+    int keyPressed;
+    @ObfuscatedName("aa")
+    String targetName;
+   @ObfuscatedName("ay")
+   int field859;
+    @ObfuscatedName("ao")
+    int type = 76;
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "([Ljava/lang/Object;I)V",
-      garbageValue = "-1270007973"
-   )
-   @Export("setArgs")
-   public void setArgs(Object[] var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "([Ljava/lang/Object;I)V",
+            garbageValue = "1592193051"
+    )
+    public void setArgs(Object[] var1) {
       this.args = var1;
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "1638695958"
-   )
-   @Export("setType")
-   public void setType(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-715457953"
+    )
+    public void setType(int var1) {
       this.type = var1;
+   }
+
+   @ObfuscatedName("aw")
+   @ObfuscatedSignature(
+      descriptor = "(Lmq;B)V",
+      garbageValue = "46"
+   )
+   public void method491(Widget var1) {
+      this.widget = var1;
    }
 
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(Lmy;I)V",
-      garbageValue = "-376683317"
+      descriptor = "(II)Z",
+      garbageValue = "-404046027"
    )
-   public void method467(Widget var1) {
-      this.widget = var1;
+   public static boolean method492(int var0) {
+      return (var0 >> 21 & 1) != 0;
    }
 
-   @ObfuscatedName("hq")
+   @ObfuscatedName("cn")
    @ObfuscatedSignature(
-      descriptor = "(Ldq;IB)V",
-      garbageValue = "106"
+      descriptor = "(II)Ljava/lang/Object;",
+      garbageValue = "140297466"
    )
-   @Export("updateActorSequence")
-   static final void updateActorSequence(Actor var0, int var1) {
-      if (var0.exactMoveArrive1Cycle >= Client.cycle) {
-         int var2 = Math.max(1, var0.exactMoveArrive1Cycle - Client.cycle);
-         int var3 = var0.field931 * 64 + var0.exactMoveDeltaX1 * 128;
-         int var4 = var0.field931 * 64 + var0.exactMoveDeltaY1 * 128;
-         var0.x += (var3 - var0.x) / var2;
-         var0.y += (var4 - var0.y) / var2;
-         var0.field1003 = 0;
-         var0.orientation = var0.exactMoveDirection;
-      } else if (var0.exactMoveArrive2Cycle >= Client.cycle) {
-         class6.method11(var0);
-      } else {
-         class18.method73(var0);
-      }
-
-      if (var0.x < 128 || var0.y < 128 || var0.x >= 13184 || var0.y >= 13184) {
-         var0.sequence = -1;
-         var0.spotAnimation = -1;
-         var0.exactMoveArrive1Cycle = 0;
-         var0.exactMoveArrive2Cycle = 0;
-         var0.x = var0.field931 * 64 + var0.pathX[0] * 128;
-         var0.y = var0.field931 * 64 + var0.pathY[0] * 128;
-         var0.method509();
-      }
-
-      if (BuddyRankComparator.localPlayer == var0 && (var0.x < 1536 || var0.y < 1536 || var0.x >= 11776 || var0.y >= 11776)) {
-         var0.sequence = -1;
-         var0.spotAnimation = -1;
-         var0.exactMoveArrive1Cycle = 0;
-         var0.exactMoveArrive2Cycle = 0;
-         var0.x = var0.field931 * 64 + var0.pathX[0] * 128;
-         var0.y = var0.pathY[0] * 128 + var0.field931 * 64;
-         var0.method509();
-      }
-
-      MenuAction.method422(var0);
-      class13.method46(var0);
+   static Object method489(int var0) {
+      return Language.method1948((class478)StructComposition.findEnumerated(class478.method2432(), var0));
    }
 }

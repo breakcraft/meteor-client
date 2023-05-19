@@ -3,76 +3,42 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jm")
+@ObfuscatedName("jj")
 @Implements("GameObject")
 public final class GameObject {
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "Lmy;"
-   )
-   @Export("scriptDotWidget")
-   static Widget scriptDotWidget;
-   @ObfuscatedName("aj")
-   @Export("plane")
-   int plane;
-   @ObfuscatedName("al")
-   @Export("z")
-   int z;
-   @ObfuscatedName("ac")
-   @Export("centerX")
-   int centerX;
-   @ObfuscatedName("ab")
-   @Export("centerY")
-   int centerY;
-   @ObfuscatedName("an")
-   @Export("startX")
-   int startX;
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "Liq;"
-   )
-   @Export("renderable")
-   public Renderable renderable;
-   @ObfuscatedName("av")
-   @Export("orientation")
-   int orientation;
-   @ObfuscatedName("aq")
-   @Export("endX")
-   int endX;
-   @ObfuscatedName("ap")
-   @Export("startY")
-   int startY;
-   @ObfuscatedName("ar")
-   @Export("endY")
-   int endY;
-   @ObfuscatedName("ak")
-   int field2228;
-   @ObfuscatedName("ax")
-   @Export("lastDrawn")
-   int lastDrawn;
-   @ObfuscatedName("as")
-   @Export("tag")
-   public long tag = 0L;
+    @ObfuscatedName("jc")
+    static int baseY;
+    @ObfuscatedName("jd")
+    static int[][] xteaKeys;
+    @ObfuscatedName("af")
+    int plane;
+    @ObfuscatedName("an")
+    int startX;
+    @ObfuscatedName("aw")
+    int z;
+    @ObfuscatedName("ac")
+    int centerX;
+    @ObfuscatedName("au")
+    int centerY;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    public Renderable renderable;
+    @ObfuscatedName("aq")
+    int orientation;
+    @ObfuscatedName("al")
+    int endX;
+    @ObfuscatedName("at")
+    int startY;
+    @ObfuscatedName("aa")
+    int endY;
    @ObfuscatedName("ay")
-   @Export("flags")
-   int flags = 0;
-
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(IB)I",
-      garbageValue = "-88"
-   )
-   public static int method1307(int var0) {
-      return var0 >>> 4 & class473.field3964;
-   }
-
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(B)[Lsc;",
-      garbageValue = "-41"
-   )
-   @Export("FillMode_values")
-   public static FillMode[] FillMode_values() {
-      return new FillMode[]{FillMode.field4040, FillMode.field4041, FillMode.SOLID};
-   }
+   int field2271;
+    @ObfuscatedName("ao")
+    int lastDrawn;
+    @ObfuscatedName("ax")
+    public long tag = 0L;
+    @ObfuscatedName("ai")
+    int flags = 0;
 }

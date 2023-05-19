@@ -6,47 +6,43 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ai")
+@ObfuscatedName("ak")
 @Implements("MouseWheelHandler")
-public final class MouseWheelHandler implements class171, MouseWheelListener {
-   @ObfuscatedName("aj")
-   @Export("rotation")
-   int rotation = 0;
+public final class MouseWheelHandler implements class170, MouseWheelListener {
+    @ObfuscatedName("af")
+    int rotation = 0;
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/awt/Component;I)V",
-      garbageValue = "-1696751646"
-   )
-   @Export("addTo")
-   void addTo(Component var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/awt/Component;I)V",
+            garbageValue = "-1336020209"
+    )
+    void addTo(Component var1) {
       var1.addMouseWheelListener(this);
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/awt/Component;B)V",
-      garbageValue = "-75"
+      descriptor = "(Ljava/awt/Component;I)V",
+      garbageValue = "109187860"
    )
-   void method86(Component var1) {
+   void method85(Component var1) {
       var1.removeMouseWheelListener(this);
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1061064035"
-   )
-   @Export("useRotation")
-   public synchronized int useRotation() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1765986428"
+    )
+    public synchronized int useRotation() {
       int var1 = this.rotation;
       this.rotation = 0;
       return var1;
    }
 
-   @Export("mouseWheelMoved")
-   @ObfuscatedName("mouseWheelMoved")
-   public synchronized void mouseWheelMoved(MouseWheelEvent var1) {
+    @ObfuscatedName("mouseWheelMoved")
+    public synchronized void mouseWheelMoved(MouseWheelEvent var1) {
       this.rotation += var1.getWheelRotation();
    }
 }

@@ -3,21 +3,19 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lx")
+@ObfuscatedName("ll")
 @Implements("SpriteMask")
 public class SpriteMask extends DualNode {
-   @ObfuscatedName("aj")
-   @Export("width")
-   public final int width;
-   @ObfuscatedName("al")
-   @Export("height")
-   public final int height;
-   @ObfuscatedName("ac")
-   @Export("xWidths")
-   public final int[] xWidths;
-   @ObfuscatedName("ab")
-   @Export("xStarts")
-   public final int[] xStarts;
+   @ObfuscatedName("gn")
+   static String field2808;
+    @ObfuscatedName("af")
+    public final int width;
+    @ObfuscatedName("an")
+    public final int height;
+    @ObfuscatedName("aw")
+    public final int[] xWidths;
+    @ObfuscatedName("ac")
+    public final int[] xStarts;
 
    SpriteMask(int var1, int var2, int[] var3, int[] var4, int var5) {
       this.width = var1;
@@ -26,13 +24,12 @@ public class SpriteMask extends DualNode {
       this.xStarts = var4;
    }
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(III)Z",
-      garbageValue = "-2050749327"
-   )
-   @Export("contains")
-   public boolean contains(int var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(III)Z",
+            garbageValue = "-746690647"
+    )
+    public boolean contains(int var1, int var2) {
       if (var2 >= 0 && var2 < this.xStarts.length) {
          int var3 = this.xStarts[var2];
          if (var1 >= var3 && var1 <= var3 + this.xWidths[var2]) {
@@ -43,35 +40,19 @@ public class SpriteMask extends DualNode {
       return false;
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "([Lnt;IB)Lnt;",
-      garbageValue = "108"
+      descriptor = "(IIII)I",
+      garbageValue = "575322475"
    )
-   @Export("findEnumerated")
-   public static class352 findEnumerated(class352[] var0, int var1) {
-      class352[] var2 = var0;
-
-      for(int var3 = 0; var3 < var2.length; ++var3) {
-         class352 var4 = var2[var3];
-         if (var1 == var4.rsOrdinal()) {
-            return var4;
-         }
+   public static int method1682(int var0, int var1, int var2) {
+      var2 &= 3;
+      if (var2 == 0) {
+         return var0;
+      } else if (var2 == 1) {
+         return var1;
+      } else {
+         return var2 == 2 ? 7 - var0 : 7 - var1;
       }
-
-      return null;
-   }
-
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1516793225"
-   )
-   public static void method1629() {
-      ByteArrayPool.field3616.clear();
-      ByteArrayPool.field3616.add(100);
-      ByteArrayPool.field3616.add(5000);
-      ByteArrayPool.field3616.add(10000);
-      ByteArrayPool.field3616.add(30000);
    }
 }

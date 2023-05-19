@@ -2,30 +2,23 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("bx")
+@ObfuscatedName("bv")
 @Implements("VorbisResidue")
 public class VorbisResidue {
-   @ObfuscatedName("aj")
-   @Export("residueType")
-   int residueType = VorbisSample.readBits(16);
-   @ObfuscatedName("al")
-   @Export("begin")
-   int begin = VorbisSample.readBits(24);
-   @ObfuscatedName("ac")
-   @Export("end")
-   int end = VorbisSample.readBits(24);
-   @ObfuscatedName("ab")
-   @Export("partitionSize")
-   int partitionSize = VorbisSample.readBits(24) + 1;
-   @ObfuscatedName("an")
-   @Export("classifications")
-   int classifications = VorbisSample.readBits(6) + 1;
-   @ObfuscatedName("ao")
-   @Export("classbook")
-   int classbook = VorbisSample.readBits(8);
-   @ObfuscatedName("av")
-   @Export("cascade")
-   int[] cascade;
+    @ObfuscatedName("af")
+    int residueType = VorbisSample.readBits(16);
+    @ObfuscatedName("an")
+    int begin = VorbisSample.readBits(24);
+    @ObfuscatedName("aw")
+    int end = VorbisSample.readBits(24);
+    @ObfuscatedName("ac")
+    int partitionSize = VorbisSample.readBits(24) + 1;
+    @ObfuscatedName("au")
+    int classifications = VorbisSample.readBits(6) + 1;
+    @ObfuscatedName("ab")
+    int classbook = VorbisSample.readBits(8);
+    @ObfuscatedName("aq")
+    int[] cascade;
 
    VorbisResidue() {
       int[] var1 = new int[this.classifications];
@@ -50,8 +43,8 @@ public class VorbisResidue {
 
    }
 
-   @ObfuscatedName("aj")
-   void method234(float[] var1, int var2, boolean var3) {
+   @ObfuscatedName("af")
+   void method254(float[] var1, int var2, boolean var3) {
       int var4;
       for(var4 = 0; var4 < var2; ++var4) {
          var1[var4] = 0.0F;
@@ -70,7 +63,7 @@ public class VorbisResidue {
                int var10;
                int var11;
                if (var8 == 0) {
-                  var10 = VorbisSample.VorbisSample_codebooks[this.classbook].method290();
+                  var10 = VorbisSample.VorbisSample_codebooks[this.classbook].method309();
 
                   for(var11 = var4 - 1; var11 >= 0; --var11) {
                      if (var9 + var11 < var6) {
@@ -92,20 +85,20 @@ public class VorbisResidue {
                         var15 = this.partitionSize / var14.dimensions;
 
                         for(int var16 = 0; var16 < var15; ++var16) {
-                           float[] var20 = var14.method289();
+                           float[] var17 = var14.method311();
 
                            for(int var18 = 0; var18 < var14.dimensions; ++var18) {
-                              var1[var13 + var16 + var18 * var15] += var20[var18];
+                              var1[var13 + var16 + var18 * var15] += var17[var18];
                            }
                         }
                      } else {
                         var15 = 0;
 
                         while(var15 < this.partitionSize) {
-                           float[] var19 = var14.method289();
+                           float[] var19 = var14.method311();
 
-                           for(int var17 = 0; var17 < var14.dimensions; ++var17) {
-                              var1[var13 + var15] += var19[var17];
+                           for(int var20 = 0; var20 < var14.dimensions; ++var20) {
+                              var1[var13 + var15] += var19[var20];
                               ++var15;
                            }
                         }

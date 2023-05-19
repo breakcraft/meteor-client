@@ -3,26 +3,23 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iq")
+@ObfuscatedName("iv")
 @Implements("Renderable")
 public abstract class Renderable extends DualNode {
-   @ObfuscatedName("er")
-   @Export("height")
-   public int height = 1000;
+    @ObfuscatedName("et")
+    public int height = 1000;
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lix;",
-      garbageValue = "-1998422213"
-   )
-   @Export("getModel")
-   protected Model getModel() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Lit;",
+            garbageValue = "-112"
+    )
+    protected Model getModel() {
       return null;
    }
 
-   @ObfuscatedName("dh")
-   @Export("draw")
-   void draw(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, long var9) {
+    @ObfuscatedName("df")
+    void draw(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, long var9) {
       Model var11 = this.getModel();
       if (var11 != null) {
          this.height = var11.height;
@@ -31,8 +28,23 @@ public abstract class Renderable extends DualNode {
 
    }
 
-   @ObfuscatedName("ao")
-   static int method1246(long var0) {
-      return (int)(var0 >>> 14 & 3L);
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(I)V",
+      garbageValue = "-407537410"
+   )
+   static void method1291() {
+      class186.Tiles_underlays = null;
+      Tiles.Tiles_overlays = null;
+      Tiles.Tiles_shapes = null;
+      Tiles.field824 = null;
+      class161.field1407 = null;
+      Tiles.field819 = null;
+      Tiles.field821 = null;
+      FileSystem.Tiles_hue = null;
+      Tiles.Tiles_saturation = null;
+      class283.Tiles_lightness = null;
+      UserComparator4.Tiles_hueMultiplier = null;
+      class31.field92 = null;
    }
 }
