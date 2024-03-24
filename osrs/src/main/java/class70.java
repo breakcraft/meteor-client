@@ -8,7 +8,7 @@ public class class70 {
    @ObfuscatedName("af")
    static final BigInteger field726 = new BigInteger("10001", 16);
    @ObfuscatedName("an")
-   static final BigInteger field727 = new BigInteger("caa2a7bee781b3652a5a550b5318cb074141ad9dbd06389622fbd58a3947aeb27e79771809fb6e20de92d7cdbe34830805ebad9bb17640a45878eea57edbb1d808a6122150c097b7a4960054ccc5e98fc0a139709f6f1a3dbf0bfc4559d63ba568b3860a7d477756bd21bb37f989b4522af2d3ee6af1781654acbafd740072c1", 16);
+   static final BigInteger field727 = new BigInteger("acc562135c7bb5a8f3fe576d78bb5cf440dc6c7a9c9c471026feb5c09cd3748ee8bb62ab72d0a4b63afd6ff4faf9eb4195fca1878e917fc22c9b23b5d24743d42049e6ddd61b6d3b51aa78ed2aec614cfe19e5a954b8d06b6c5c81bfd1d1bb6e36363a3b3bad23e4bc24415bfee8473d549f6c6a37723d4f15f1679e01051239", 16);
     @ObfuscatedName("cn")
     @ObfuscatedSignature(
             descriptor = "Lsw;"

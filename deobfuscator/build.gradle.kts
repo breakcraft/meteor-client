@@ -7,7 +7,8 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
+    maven { url = uri("https://raw.githubusercontent.com/AlterRSPS/Resources/main/jav_configs/jav_config.ws") }
+   // maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
 }
 
 dependencies {
